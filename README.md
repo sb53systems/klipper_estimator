@@ -3,7 +3,8 @@
 `klipper_estimator` is a tool for determining the time a print will take using
 the Klipper firmware.  
   
-This version has been modified to improve its integration with [G-Code Flow and Temperature Controller](https://github.com/sb53systems/G-Code-Flow-Temperature-Controller) script, forked from [Annex-Engineering/klipper_estimator](https://github.com/Annex-Engineering/klipper_estimator).  
+This version has been modified to improve its integration with [G-Code Flow and Temperature Controller](https://github.com/sb53systems/G-Code-Flow-Temperature-Controller) script.  
+This repository is forked from [Annex-Engineering/klipper_estimator](https://github.com/Annex-Engineering/klipper_estimator).  
   
 The estimation is done using an implementation of Klippers kinematics, but may in some cases be slightly off due to rounding modes. If the timing is far off(e.g. more than a minute over a >12 hour print), this is considered a bug.  
   
