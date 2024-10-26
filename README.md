@@ -19,7 +19,7 @@ compile the tool. Assuming a Rust toolchain is installed, along with git, one
 can build `klipper_estimator` by running:
 
 ```
-$ git clone https://github.com/dalegaard/klipper_estimator.git
+$ git clone https://github.com/sb53systems/klipper_estimator.git
 $ cd klipper_estimator
 $ cargo build --release
 // Resulting binary will be at `target/release/klipper_estimator`(.exe on Windows)
