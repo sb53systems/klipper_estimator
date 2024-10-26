@@ -11,7 +11,23 @@ The estimation is done using an implementation of Klippers kinematics, but may i
 Note that currently delta kinematic limits are _not_ implemented.  
   
 ### Quirks
-Be aware of the following "quirks" when using `klipper_estimator` compared to Klipper itself:
+Be aware of the following "quirks" when using `klipper_estimator` compared to Klipper itself:  
+  
+#### Relative extrusion by default
+
+`klipper_estimator` assumes _relative_ extrusion and _absolute_ movement by
+default. This is different from Klipper, which assumes _absolute_ extrusion as
+well. This difference exists because `klipper_estimator` can't see inside
+macros. Most users use relative extrusion, and put the M83 command in their
+print start macro, making it invisible to `klipper_estimator`.
+
+If you wish to use _absolute_ extrusion, you must ensure that an `M82` command
+is inserted in your slicer start gcode. E.g.:
+
+```
+PRINT_START
+M82
+```
   
 ## Building
 
