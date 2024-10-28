@@ -399,47 +399,10 @@ impl DumpMovesState {
             if m.is_kinematic_move() {
                 kind.push('K');
             }
-            //println!(
-            //    "N{}[{}] @ {:.8} => {:.8} / z{:.8}:",
-            //    self.move_idx,
-            //    kind,
-            //    self.ctime,
-            //    self.ctime + m.total_time(),
-            //    self.ztime,
-            //);
-            //println!(
-            //    "    Path:       {} => {} [{:.3}∠{:.2}]",
-            //    (m.start * 1000.0).round() / 1000.0,
-            //    (m.end * 1000.0).round() / 1000.0,
-            //    m.distance,
-            //    m.rate.xy().angle_between(DVec2::new(1.0, 0.0)) * 180.0 / std::f64::consts::PI,
-            //);
-            //println!("    Axes {}", (m.rate * 1000.0).round() / 1000.0);
-            //println!("    Line width: {:?}", m.line_width(1.75 / 2.0, 0.25),);
+            println!("Path = {}", (m.end * 1000.0).round() / 1000.0,);
             println!("Flow = {:?}", m.flow_rate(1.75 / 2.0));
-            //println!("    Kind: {}", planner.move_kind_str(&m).unwrap_or("Other"));
-            //println!("    Acceleration {:.4}", m.acceleration);
-            //println!("    Max dv2: {:.4}", m.max_dv2);
-            //println!("    Max start_v2: {:.4}", m.max_start_v2);
-            //println!("    Max cruise_v2: {:.4}", m.max_cruise_v2);
-            //println!("    Max smoothed_v2: {:.4}", m.max_smoothed_v2);
-            //println!(
-            //    "    Velocity:   {:.3} => {:.3} => {:.3}",
-            //    m.start_v, m.cruise_v, m.end_v
-            //);
             println!("Time = {:.4}", m.total_time());
             self.ctime += m.total_time();
-
-            //println!(
-            //    "    Distances:  {:.3}+{:.3}+{:.3} = {:.3}",
-            //    m.accel_distance(),
-            //    m.cruise_distance(),
-            //    m.decel_distance(),
-            //    m.distance
-            //);
-
-            println!();
-
             self.ztime += m.total_time();
         }
     }
