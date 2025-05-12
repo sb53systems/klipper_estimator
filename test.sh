@@ -1,1 +1,0 @@
-./target/release/klipper_estimator --config_file config.json dump-moves Cylinder_Test.gcode > KEOutput
