@@ -1,7 +1,7 @@
 use glam::{DVec3 as Vec3, Vec4Swizzles};
 
 use crate::gcode::GCodeTraditionalParams;
-use crate::kind_tracker::Kind;
+use crate::kind_tracker::KindTracker;
 use crate::planner::{OperationSequence, PositionMode, ToolheadState};
 
 #[derive(Debug, Default)]
@@ -18,7 +18,7 @@ impl ArcState {
         &self,
         toolhead_state: &mut ToolheadState,
         op_sequence: &mut OperationSequence,
-        move_kind: Option<Kind>,
+        kind_tracker: &mut KindTracker,
         params: &GCodeTraditionalParams,
         direction: ArcDirection,
     ) -> usize {
@@ -39,7 +39,8 @@ impl ArcState {
 
         let old_pos_mode = toolhead_state.position_modes;
         toolhead_state.position_modes = [PositionMode::Absolute; 4];
-        for segment in arc {
+        let total_segments = segments;
+        for (i, segment) in arc.into_iter().enumerate() {
             e_base += e_per_move;
             let coord = [
                 Some(segment.x),
@@ -48,7 +49,8 @@ impl ArcState {
                 Some(e_base),
             ];
             let mut pm = toolhead_state.perform_move(coord);
-            pm.kind = move_kind;
+            let segment_kind_label = format!("Arc {}/{}", i + 1, total_segments);
+            pm.kind = Some(kind_tracker.get_kind(&segment_kind_label));
             op_sequence.add_move(pm, toolhead_state);
         }
         toolhead_state.position_modes = old_pos_mode;

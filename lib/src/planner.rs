@@ -80,13 +80,12 @@ impl Planner {
                     }
                 }
                 ('G', v @ 2 | v @ 3) => {
-                    let move_kind = self.kind_tracker.kind_from_comment(&cmd.comment);
                     let m = &mut self.toolhead_state;
                     let seq = &mut self.operations;
                     return self.arc_state.generate_arc(
                         m,
                         seq,
-                        move_kind,
+                        &mut self.kind_tracker,
                         params,
                         match v {
                             2 => crate::arcs::ArcDirection::Clockwise,
