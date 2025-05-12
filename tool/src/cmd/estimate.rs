@@ -400,7 +400,6 @@ impl DumpMovesState {
                 kind.push('K');
             }
             // println!("Path = {}", (m.end * 1000.0).round() / 1000.0,);
-            println!("Kind = {}", planner.move_kind_str(&m).unwrap_or("Other"));
             println!("Flow = {:?}", m.flow_rate(1.75 / 2.0));
             println!("Time = {:.4}", m.total_time());
             self.ctime += m.total_time();
